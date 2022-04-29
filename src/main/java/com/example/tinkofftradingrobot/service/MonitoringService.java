@@ -15,6 +15,5 @@ public class MonitoringService {
     }
 
     public void observe(List<String> figis) {
-
     }
 }
