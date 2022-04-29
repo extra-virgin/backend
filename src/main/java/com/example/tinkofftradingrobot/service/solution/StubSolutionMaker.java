@@ -27,15 +27,22 @@ public class StubSolutionMaker implements StrategySolutionMaker {
         }
     }
 
+    public void resolveOpenedPosition(String figi) {
+        
+    }
+
     private void buy(String figi) {
         investApi.getOrdersService().postOrder(figi, 1L, investApi
-                .getMarketDataService().getLastPricesSync(List.of("figi")).get(0).getPrice(),
+                .getMarketDataService().getLastPricesSync(List.of(figi)).get(0).getPrice(),
                 OrderDirection.ORDER_DIRECTION_BUY, investApi.getUserService().getAccountsSync().get(0).getId(),
                 OrderType.ORDER_TYPE_MARKET, generateOrderID());
     }
 
     private void sell(String figi) {
-
+        investApi.getOrdersService().postOrder(figi, 1L, investApi
+                        .getMarketDataService().getLastPricesSync(List.of(figi)).get(0).getPrice(),
+                OrderDirection.ORDER_DIRECTION_SELL, investApi.getUserService().getAccountsSync().get(0).getId(),
+                OrderType.ORDER_TYPE_MARKET, generateOrderID());
     }
 
     // важно! должна соблюдаться идемподентность
