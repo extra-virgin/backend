@@ -10,6 +10,7 @@ COPY build.gradle settings.gradle gradlew ./
 COPY gradle/ ./gradle/
 
 COPY src/ ./src/
+RUN chmod a+x ./gradlew
 RUN ./gradlew build --no-daemon
 
 
