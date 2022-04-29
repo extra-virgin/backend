@@ -19,6 +19,8 @@ public class StubSolutionMaker implements StrategySolutionMaker {
     }
 
     @Override
+    // тут вместо figi должен быть объект со всей информацией, которая может пригодиться для принятия решения.
+    // вызывается из MonitoringService
     public void resolve(String figi) {
         if (Math.random() > 0.9) {
             buy(figi);
