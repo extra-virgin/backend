@@ -1,0 +1,14 @@
+# useless directories
+.idea/
+.git/
+
+# gradle
+.gradle/
+build/
+gradlew.bat
+
+# logs
+*.log
+
+# markdown
+*.md
