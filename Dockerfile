@@ -9,7 +9,10 @@ WORKDIR $APP_HOME
 COPY build.gradle settings.gradle gradlew ./
 COPY gradle/ ./gradle/
 
+ARG DAP=docker.application.properties
 COPY src/ ./src/
+COPY $DAP ./
+RUN AP=$(find . -name "application.properties"); mv ./$DAP $AP
 RUN chmod a+x ./gradlew
 RUN ./gradlew build --no-daemon
 
@@ -23,4 +26,4 @@ WORKDIR $APP_HOME
 COPY --from=builder $APP_HOME/build/libs/$ARTIFACT_NAME ./app.jar
 
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "app.Jar"]
