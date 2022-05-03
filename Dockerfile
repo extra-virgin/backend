@@ -9,10 +9,8 @@ WORKDIR $APP_HOME
 COPY build.gradle settings.gradle gradlew ./
 COPY gradle/ ./gradle/
 
-ARG DAP=docker.application.properties
 COPY src/ ./src/
-COPY $DAP ./
-RUN AP=$(find . -name "application.properties"); mv ./$DAP $AP
+RUN AP=$(find . -name "application.properties"); DAP=$(find . -name "docker.application.properties"); mv ./$DAP $AP
 RUN chmod a+x ./gradlew
 RUN ./gradlew build --no-daemon
 
