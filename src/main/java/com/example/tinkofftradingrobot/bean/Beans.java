@@ -4,7 +4,6 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import ru.tinkoff.piapi.contract.v1.Account;
 import ru.tinkoff.piapi.core.InvestApi;
 
 @Configuration

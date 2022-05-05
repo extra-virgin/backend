@@ -1,6 +1,9 @@
 package com.example.tinkofftradingrobot.service.solution;
 
 import com.example.tinkofftradingrobot.config.AlgorithmConfigKeeper;
+import com.example.tinkofftradingrobot.model.OrderEntity;
+import org.springframework.stereotype.Service;
+import ru.tinkoff.piapi.contract.v1.Order;
 import ru.tinkoff.piapi.contract.v1.OrderDirection;
 import ru.tinkoff.piapi.contract.v1.OrderType;
 import ru.tinkoff.piapi.core.InvestApi;
@@ -13,6 +16,7 @@ import java.util.UUID;
  *  Mock of real strategy class for testing.
  *  Randomly buys an instrument then sells if price grows by 1% or if it falls by 0.5%
  */
+@Service
 public class StubSolutionMaker implements StrategySolutionMaker, OrderService {
     private InvestApi investApi;
 
@@ -83,5 +87,10 @@ public class StubSolutionMaker implements StrategySolutionMaker, OrderService {
     // важно! должна соблюдаться идемподентность
     private String generateOrderID() {
         return String.valueOf(UUID.randomUUID());
+    }
+
+    @Override
+    public List<OrderEntity> getOrdersByLastNanos() {
+        return null;
     }
 }

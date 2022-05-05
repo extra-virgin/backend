@@ -2,10 +2,12 @@ package com.example.tinkofftradingrobot.model;
 
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.CreationTimestamp;
 import ru.tinkoff.piapi.contract.v1.OrderDirection;
 import ru.tinkoff.piapi.contract.v1.OrderType;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
@@ -22,24 +24,28 @@ public class OrderEntity {
     private String orderId;
 
     @Column(name = "figi")
-    String figi;
+    private String figi;
 
     @Column(name = "price")
-    Long price;
+    private Long price;
 
     @Column(name = "account_id")
-    String accountID;
+    private String accountID;
 
     @Column(name = "quantity")
-    int quantity;
+    private int quantity;
 
     @Column(name = "direction")
     @Enumerated(EnumType.STRING)
-    OrderDirection direction;
+    private OrderDirection direction;
 
     @Column(name = "type")
     @Enumerated(EnumType.STRING)
-    OrderType type;
+    private OrderType type;
+
+    @Column(name="timestamp", nullable = false, updatable = false, insertable = false)
+    @CreationTimestamp
+    private Timestamp timestamp;
 
     @Override
     public boolean equals(Object o) {
