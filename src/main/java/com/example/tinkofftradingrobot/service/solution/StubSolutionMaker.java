@@ -1,9 +1,8 @@
 package com.example.tinkofftradingrobot.service.solution;
 
 import com.example.tinkofftradingrobot.config.AlgorithmConfigKeeper;
-import com.example.tinkofftradingrobot.model.OrderEntity;
+import com.example.tinkofftradingrobot.dto.OrderDTO;
 import org.springframework.stereotype.Service;
-import ru.tinkoff.piapi.contract.v1.Order;
 import ru.tinkoff.piapi.contract.v1.OrderDirection;
 import ru.tinkoff.piapi.contract.v1.OrderType;
 import ru.tinkoff.piapi.core.InvestApi;
@@ -90,7 +89,7 @@ public class StubSolutionMaker implements StrategySolutionMaker, OrderService {
     }
 
     @Override
-    public List<OrderEntity> getOrdersByLastNanos() {
+    public List<OrderDTO> getOrdersByLastNanos() {
         return null;
     }
 }
