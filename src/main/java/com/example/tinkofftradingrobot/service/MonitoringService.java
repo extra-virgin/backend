@@ -1,19 +1,32 @@
 package com.example.tinkofftradingrobot.service;
 
 import org.springframework.stereotype.Service;
+import ru.tinkoff.piapi.contract.v1.Instrument;
 import ru.tinkoff.piapi.core.InvestApi;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MonitoringService {
 
     private final InvestApi investApi;
 
+
+
     public MonitoringService(InvestApi investApi) {
         this.investApi = investApi;
+//        List<String> list = new ArrayList<>();
+//        list.add("FG0000000000");
+//        observe(list);
     }
 
     public void observe(List<String> figis) {
+        var instrumentsService = investApi.getInstrumentsService();
+        List<Instrument> instrumentInfo = figis.stream()
+                .map(instrumentsService::getInstrumentByFigiSync)
+                .collect(Collectors.toList());
+        System.out.println(instrumentInfo.toString());
     }
 }

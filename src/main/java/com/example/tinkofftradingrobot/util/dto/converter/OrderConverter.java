@@ -8,7 +8,7 @@ public class OrderConverter {
         OrderDTO orderDTO = new OrderDTO();
         orderDTO.setFigi(orderEntity.getFigi());
         orderDTO.setDirection(orderEntity.getDirection());
-        orderDTO.setAccountID(orderEntity.getAccountID());
+        orderDTO.setAccountID(orderEntity.getUser().getAccountId());
         orderDTO.setQuantity(orderEntity.getQuantity());
         orderDTO.setTimestamp(orderEntity.getTimestamp().toString());
         orderDTO.setPrice(orderEntity.getPrice());

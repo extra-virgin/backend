@@ -5,7 +5,8 @@ import io.grpc.*;
 public class AuthInterceptor implements ClientInterceptor {
 
     private static final String AUTH_HEADER_NAME = "Authorization";
-    private static final Metadata.Key<String> AUTH_HEADER = Metadata.Key.of(AUTH_HEADER_NAME, Metadata.ASCII_STRING_MARSHALLER);
+    private static final Metadata.Key<String> AUTH_HEADER = Metadata.Key.of(AUTH_HEADER_NAME,
+            Metadata.ASCII_STRING_MARSHALLER);
 
     private final String authHeaderValue;
 
@@ -14,7 +15,8 @@ public class AuthInterceptor implements ClientInterceptor {
     }
 
     @Override
-    public <ReqT, RespT> ClientCall<ReqT, RespT> interceptCall(MethodDescriptor<ReqT, RespT> methodDescriptor, CallOptions callOptions, Channel channel) {
+    public <ReqT, RespT> ClientCall<ReqT, RespT> interceptCall(MethodDescriptor<ReqT, RespT> methodDescriptor,
+                                                               CallOptions callOptions, Channel channel) {
         var call = channel.newCall(methodDescriptor, callOptions);
         return new ForwardingClientCall.SimpleForwardingClientCall<>(call) {
             @Override

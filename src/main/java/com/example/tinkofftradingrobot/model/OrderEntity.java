@@ -21,7 +21,7 @@ public class OrderEntity {
 
     @Id
     @Column(name = "order_id")
-    private String orderId;
+    private Long orderId;
 
     @Column(name = "figi")
     private String figi;
@@ -29,8 +29,10 @@ public class OrderEntity {
     @Column(name = "price")
     private Long price;
 
-    @Column(name = "account_id")
-    private String accountID;
+    // owner of relationship - order
+    @ManyToOne()
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private UserEntity user;
 
     @Column(name = "quantity")
     private int quantity;
@@ -52,7 +54,7 @@ public class OrderEntity {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         OrderEntity that = (OrderEntity) o;
-        return orderId != null && Objects.equals(orderId, that.orderId);
+        return Objects.equals(orderId, that.orderId);
     }
 
     @Override
