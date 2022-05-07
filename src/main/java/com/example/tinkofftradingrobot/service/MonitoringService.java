@@ -1,5 +1,6 @@
 package com.example.tinkofftradingrobot.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.tinkoff.piapi.contract.v1.Instrument;
 import ru.tinkoff.piapi.core.InvestApi;
@@ -13,6 +14,11 @@ public class MonitoringService {
 
     private final InvestApi investApi;
 
+    private UserService userService;
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
     public MonitoringService(InvestApi investApi) {
         this.investApi = investApi;
@@ -26,6 +32,5 @@ public class MonitoringService {
         List<Instrument> instrumentInfo = figis.stream()
                 .map(instrumentsService::getInstrumentByFigiSync)
                 .collect(Collectors.toList());
-        System.out.println(instrumentInfo.toString());
     }
 }

@@ -1,7 +1,7 @@
 package com.example.tinkofftradingrobot.config.preload;
 
 import com.example.tinkofftradingrobot.service.UserService;
-import com.example.tinkofftradingrobot.service.solution.OrderService;
+import com.example.tinkofftradingrobot.service.OrderService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

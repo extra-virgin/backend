@@ -16,7 +16,7 @@ import java.util.UUID;
  *  Randomly buys an instrument then sells if price grows by 1% or if it falls by 0.5%
  */
 @Service
-public class StubSolutionMaker implements StrategySolutionMaker, OrderService {
+public class StubSolutionMaker implements StrategySolutionMaker {
     private InvestApi investApi;
 
     public StubSolutionMaker(InvestApi investApi) {
@@ -88,8 +88,4 @@ public class StubSolutionMaker implements StrategySolutionMaker, OrderService {
         return String.valueOf(UUID.randomUUID());
     }
 
-    @Override
-    public List<OrderDTO> getOrdersByLastNanos() {
-        return null;
-    }
 }

@@ -1,7 +1,7 @@
 package com.example.tinkofftradingrobot.controller;
 
 import com.example.tinkofftradingrobot.dto.OrderDTO;
-import com.example.tinkofftradingrobot.service.solution.OrderService;
+import com.example.tinkofftradingrobot.service.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
