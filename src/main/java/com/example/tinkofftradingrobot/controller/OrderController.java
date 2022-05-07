@@ -23,9 +23,8 @@ public class OrderController {
 
     @GetMapping
     public ResponseEntity<?> getOrders() {
-        List<OrderDTO> orders = orderService.getOrdersByLastNanos();
 
-        return new ResponseEntity<>(orders, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/create")

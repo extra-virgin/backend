@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 @RequiredArgsConstructor
+@AllArgsConstructor
 @Builder
 @Getter
 @Setter
