@@ -1,19 +1,34 @@
-package com.example.tinkofftradingrobot.util.dto.converter;
+package com.example.tinkofftradingrobot.service.converter;
 
 import com.example.tinkofftradingrobot.dto.OrderDTO;
 import com.example.tinkofftradingrobot.model.OrderEntity;
 
+import java.sql.Timestamp;
+
 public class OrderConverter {
     public static OrderDTO toDTO(OrderEntity orderEntity) {
-        OrderDTO orderDTO = new OrderDTO();
-        orderDTO.setFigi(orderEntity.getFigi());
-        orderDTO.setDirection(orderEntity.getDirection());
-        orderDTO.setAccountID(orderEntity.getUser().getAccountId());
-        orderDTO.setQuantity(orderEntity.getQuantity());
-        orderDTO.setTimestamp(orderEntity.getTimestamp().toString());
-        orderDTO.setPrice(orderEntity.getPrice());
-        orderDTO.setType(orderEntity.getType());
-
-        return orderDTO;
+        return OrderDTO.builder()
+                .figi(orderEntity.getFigi())
+                .direction(orderEntity.getDirection())
+                .accountID(orderEntity.getUser().getAccountId())
+                .quantity(orderEntity.getQuantity())
+                .timestamp(orderEntity.getTimestamp().toString())
+                .price(orderEntity.getPrice())
+                .type(orderEntity.getType())
+                .token(null)
+                .build();
+    }
+    // detached (no user)
+    public static OrderEntity toEntity(OrderDTO orderDTO) {
+        return OrderEntity.builder()
+                .orderId(null)
+                .figi(orderDTO.getFigi())
+                .direction(orderDTO.getDirection())
+                .quantity(orderDTO.getQuantity())
+                .timestamp(Timestamp.valueOf(orderDTO.getTimestamp()))
+                .price(orderDTO.getPrice())
+                .type(orderDTO.getType())
+                .user(null)
+                .build();
     }
 }

@@ -10,13 +10,14 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-@Entity
-@Table(name = "orders")
+@RequiredArgsConstructor
+@AllArgsConstructor
+@Builder
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
-@AllArgsConstructor
+@Entity
+@Table(name = "orders")
 public class OrderEntity {
 
     @Id
