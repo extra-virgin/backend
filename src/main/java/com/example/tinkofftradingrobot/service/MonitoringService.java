@@ -14,10 +14,10 @@ public class MonitoringService {
 
     private final InvestApi investApi;
 
-    private UserService userService;
+    private AccountService accountService;
     @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
+    public void setUserService(AccountService accountService) {
+        this.accountService = accountService;
     }
 
     public MonitoringService(InvestApi investApi) {

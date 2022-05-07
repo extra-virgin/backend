@@ -10,7 +10,7 @@ public class OrderConverter {
         return OrderDTO.builder()
                 .figi(orderEntity.getFigi())
                 .direction(orderEntity.getDirection())
-                .accountID(orderEntity.getUser().getAccountId())
+                .accountID(orderEntity.getAccount().getAccountId())
                 .quantity(orderEntity.getQuantity())
                 .timestamp(orderEntity.getTimestamp().toString())
                 .price(orderEntity.getPrice())
@@ -18,7 +18,7 @@ public class OrderConverter {
                 .token(null)
                 .build();
     }
-    // detached (no user)
+    /*// detached (no user)
     public static OrderEntity toEntity(OrderDTO orderDTO) {
         return OrderEntity.builder()
                 .orderId(null)
@@ -31,4 +31,5 @@ public class OrderConverter {
                 .user(null)
                 .build();
     }
+     */
 }

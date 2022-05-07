@@ -21,7 +21,8 @@ import java.util.Objects;
 public class OrderEntity {
 
     @Id
-    @Column(name = "order_id")
+    @GeneratedValue
+    @Column(name = "id")
     private Long orderId;
 
     @Column(name = "figi")
@@ -32,8 +33,8 @@ public class OrderEntity {
 
     // owner of relationship - order
     @ManyToOne()
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private UserEntity user;
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    private AccountEntity account;
 
     @Column(name = "quantity")
     private int quantity;
