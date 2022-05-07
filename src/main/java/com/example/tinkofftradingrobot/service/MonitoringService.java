@@ -14,12 +14,11 @@ public class MonitoringService {
     private final InvestApi investApi;
 
 
-
     public MonitoringService(InvestApi investApi) {
         this.investApi = investApi;
-//        List<String> list = new ArrayList<>();
-//        list.add("FG0000000000");
-//        observe(list);
+        List<String> list = new ArrayList<>();
+        list.add("BBG000B9XRY4");
+        observe(list);
     }
 
     public void observe(List<String> figis) {
