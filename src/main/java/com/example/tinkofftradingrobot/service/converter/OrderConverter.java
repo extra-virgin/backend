@@ -3,6 +3,7 @@ package com.example.tinkofftradingrobot.service.converter;
 import com.example.tinkofftradingrobot.dto.OrderDTO;
 import com.example.tinkofftradingrobot.model.OrderEntity;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class OrderConverter {
@@ -14,7 +15,7 @@ public class OrderConverter {
                 .quantity(orderEntity.getQuantity())
                 .direction(orderEntity.getDirection())
                 .type(orderEntity.getType())
-                .timestamp(orderEntity.getTimestamp().toString())
+                .time(orderEntity.getDate().getTime())
                 .build();
     }
     // detached (no user)
@@ -27,7 +28,7 @@ public class OrderConverter {
                 .quantity(orderDTO.getQuantity())
                 .direction(orderDTO.getDirection())
                 .type(orderDTO.getType())
-                .timestamp(Timestamp.valueOf(orderDTO.getTimestamp()))
+                .date(new Date(orderDTO.getTime()))
                 .build();
     }
 }
