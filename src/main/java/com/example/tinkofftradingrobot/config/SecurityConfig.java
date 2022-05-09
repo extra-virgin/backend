@@ -4,6 +4,7 @@ import com.example.tinkofftradingrobot.config.security.ApiAuthenticationProvider
 import com.example.tinkofftradingrobot.config.security.ApiSecurityConfigurerAdapter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -15,6 +16,7 @@ import org.springframework.web.cors.CorsConfiguration;
 @RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
+@EnableScheduling
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final ApiAuthenticationProvider apiAuthenticationProvider;

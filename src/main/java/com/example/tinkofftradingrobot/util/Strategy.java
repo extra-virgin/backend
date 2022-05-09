@@ -1,7 +1,7 @@
-package com.example.tinkofftradingrobot.strategy;
+package com.example.tinkofftradingrobot.util;
 
 public enum Strategy {
-    STUB("STUB") ;
+    STUB("STUB");
 
     private final String value;
 

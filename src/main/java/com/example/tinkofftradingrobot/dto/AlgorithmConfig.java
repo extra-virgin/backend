@@ -1,6 +1,6 @@
 package com.example.tinkofftradingrobot.dto;
 
-import com.example.tinkofftradingrobot.strategy.Strategy;
+import com.example.tinkofftradingrobot.util.Strategy;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

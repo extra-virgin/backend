@@ -1,4 +1,4 @@
-package com.example.tinkofftradingrobot.strategy;
+package com.example.tinkofftradingrobot.strategy.solution;
 
 import com.example.tinkofftradingrobot.config.AlgorithmConfigKeeper;
 import org.springframework.stereotype.Service;
@@ -15,14 +15,13 @@ import java.util.UUID;
  *  Randomly buys an instrument then sells if price grows by 1% or if it falls by 0.5%
  */
 @Service
-public class StubSolutionMaker implements StrategySolutionMaker {
+public class StubSolutionMakerDeprecated {
     private InvestApi investApi;
 
-    public StubSolutionMaker(InvestApi investApi) {
+    public StubSolutionMakerDeprecated(InvestApi investApi) {
         this.investApi = investApi;
     }
 
-    @Override
     // тут вместо figi должен быть объект со всей информацией, которая может пригодиться для принятия решения.
     // вызывается из MonitoringService
     public void resolve(String figi) {
