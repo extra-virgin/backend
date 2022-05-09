@@ -7,6 +7,7 @@ import ru.tinkoff.piapi.contract.v1.OrderDirection;
 import ru.tinkoff.piapi.contract.v1.OrderType;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -49,7 +50,7 @@ public class OrderEntity {
 
     @Column(name="timestamp", nullable = false, updatable = false, insertable = false)
     @CreationTimestamp
-    private Timestamp timestamp;
+    private Date date;
 
     @Override
     public boolean equals(Object o) {
