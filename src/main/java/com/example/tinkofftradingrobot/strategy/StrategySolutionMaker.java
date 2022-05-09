@@ -1,4 +1,4 @@
-package com.example.tinkofftradingrobot.service.solution;
+package com.example.tinkofftradingrobot.strategy;
 
 public interface StrategySolutionMaker {
     void resolve(String figi);

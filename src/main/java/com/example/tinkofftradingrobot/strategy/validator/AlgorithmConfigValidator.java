@@ -1,4 +1,4 @@
-package com.example.tinkofftradingrobot.service.validator;
+package com.example.tinkofftradingrobot.strategy.validator;
 
 import com.example.tinkofftradingrobot.dto.AlgorithmConfig;
 

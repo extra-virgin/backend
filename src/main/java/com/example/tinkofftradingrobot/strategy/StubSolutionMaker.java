@@ -1,7 +1,6 @@
-package com.example.tinkofftradingrobot.service.solution;
+package com.example.tinkofftradingrobot.strategy;
 
 import com.example.tinkofftradingrobot.config.AlgorithmConfigKeeper;
-import com.example.tinkofftradingrobot.dto.OrderDTO;
 import org.springframework.stereotype.Service;
 import ru.tinkoff.piapi.contract.v1.OrderDirection;
 import ru.tinkoff.piapi.contract.v1.OrderType;
