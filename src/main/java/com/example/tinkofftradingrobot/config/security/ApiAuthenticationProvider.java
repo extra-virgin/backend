@@ -1,7 +1,7 @@
 package com.example.tinkofftradingrobot.config.security;
 
-import com.example.tinkofftradingrobot.model.AccountEntity;
-import com.example.tinkofftradingrobot.repository.AccountRepo;
+import com.example.tinkofftradingrobot.model.UserEntity;
+import com.example.tinkofftradingrobot.repository.UserRepo;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -10,23 +10,27 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApiAuthenticationProvider implements AuthenticationProvider {
 
-    private final AccountRepo accountRepo;
+    private final UserRepo userRepo;
 
-    public ApiAuthenticationProvider(AccountRepo accountRepo) {
-        this.accountRepo = accountRepo;
+    public ApiAuthenticationProvider(UserRepo userRepo) {
+        this.userRepo = userRepo;
     }
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
-        ApiAuthenticationToken demoAuthentication = (ApiAuthenticationToken) authentication;
-        boolean isPresent = accountRepo.existsAccountEntitiesByTokenEquals(demoAuthentication.getName());
-
+        ApiAuthenticationToken apiAuthentication = (ApiAuthenticationToken) authentication;
+        boolean isPresent = userRepo.existsUserEntitiesByTokenEquals(apiAuthentication.getName());
         if(!isPresent){
-            throw new UnknownUserException("Could not find user with Token: " + demoAuthentication.getName());
+            throw new UnknownUserException("Could not find user with Token: " + apiAuthentication.getName());
         }
-        // don't return null
-        return null;
+        var userOpt = userRepo.findByToken(apiAuthentication.getName());
+        if (userOpt.isPresent()) {
+            UserEntity user = userOpt.get();
+            return new ApiAuthenticationToken(user.getToken(), user.getId(), true);
+        }
+        apiAuthentication.setAuthenticated(false);
+        return apiAuthentication;
     }
 
     @Override

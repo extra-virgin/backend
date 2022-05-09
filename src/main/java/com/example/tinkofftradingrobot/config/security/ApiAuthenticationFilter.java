@@ -9,10 +9,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class ApiAuthenticationFilter extends OncePerRequestFilter {
 
     private final ApiAuthenticationProvider apiAuthenticationProvider;
+    private final String[] paths = {"/api/user/create"};
 
     public ApiAuthenticationFilter(ApiAuthenticationProvider apiAuthenticationProvider) {
         this.apiAuthenticationProvider = apiAuthenticationProvider;
@@ -24,23 +26,17 @@ public class ApiAuthenticationFilter extends OncePerRequestFilter {
 
         String xAuth = request.getHeader("X-Authorization");
 
-        // validate the value in xAuth
-        if(idk(xAuth) == false){
+        var apiAuthenticationToken = new ApiAuthenticationToken(xAuth);
+        Authentication authentication = apiAuthenticationProvider.authenticate(apiAuthenticationToken);
+        if(!authentication.isAuthenticated()){
             throw new SecurityException();
         }
-
-        // The token is 'valid' so magically get a user id from it
-        Long id = getUserIdFromToken(xAuth);
-
-        // Create our Authentication and let Spring know about it
-        Authentication auth = new ApiAuthenticationToken(id);
-        SecurityContextHolder.getContext().setAuthentication(auth);
-
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request, response);
     }
 
-//    @Override
-//    protected boolean shouldNotFilter(HttpServletRequest request) {
-//        return false;
-//    }
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        return Arrays.asList(paths).contains(request.getServletPath());
+    }
 }
