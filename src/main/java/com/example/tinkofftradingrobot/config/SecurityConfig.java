@@ -1,27 +1,23 @@
 package com.example.tinkofftradingrobot.config;
 
-//import com.example.tinkofftradingrobot.config.security.ApiAuthenticationProvider;
+import com.example.tinkofftradingrobot.config.security.ApiAuthenticationProvider;
+import com.example.tinkofftradingrobot.config.security.ApiSecurityConfigurerAdapter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.security.web.util.matcher.OrRequestMatcher;
-import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 
-import javax.servlet.Filter;
 
+@RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-//    private ApiAuthenticationProvider apiAuthenticationProvider;
-//    public SecurityConfig(ApiAuthenticationProvider apiAuthenticationProvider) {
-//        this.apiAuthenticationProvider = apiAuthenticationProvider;
-//    }
+    private final ApiAuthenticationProvider apiAuthenticationProvider;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -37,19 +33,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/api/user/create").permitAll()
                 .anyRequest().authenticated();
+        http.apply(new ApiSecurityConfigurerAdapter(apiAuthenticationProvider));
     }
 
-    private RequestMatcher getRequestMatchers() {
-        return new OrRequestMatcher(new AntPathRequestMatcher("/**"));
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(apiAuthenticationProvider);
     }
-
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        web.ignoring().antMatchers("/api/user/create");
-//    }
-
-//    @Override
-//    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.authenticationProvider(apiAuthenticationProvider);
-//    }
 }
