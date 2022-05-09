@@ -9,27 +9,25 @@ public class OrderConverter {
     public static OrderDTO toDTO(OrderEntity orderEntity) {
         return OrderDTO.builder()
                 .figi(orderEntity.getFigi())
-                .direction(orderEntity.getDirection())
+                .price(orderEntity.getPrice())
                 .accountID(orderEntity.getAccount().getAccountId())
                 .quantity(orderEntity.getQuantity())
-                .timestamp(orderEntity.getTimestamp().toString())
-                .price(orderEntity.getPrice())
+                .direction(orderEntity.getDirection())
                 .type(orderEntity.getType())
-                .token(null)
+                .timestamp(orderEntity.getTimestamp().toString())
                 .build();
     }
-    /*// detached (no user)
+    // detached (no user)
     public static OrderEntity toEntity(OrderDTO orderDTO) {
         return OrderEntity.builder()
                 .orderId(null)
                 .figi(orderDTO.getFigi())
-                .direction(orderDTO.getDirection())
-                .quantity(orderDTO.getQuantity())
-                .timestamp(Timestamp.valueOf(orderDTO.getTimestamp()))
                 .price(orderDTO.getPrice())
+                .account(null)
+                .quantity(orderDTO.getQuantity())
+                .direction(orderDTO.getDirection())
                 .type(orderDTO.getType())
-                .user(null)
+                .timestamp(Timestamp.valueOf(orderDTO.getTimestamp()))
                 .build();
     }
-     */
 }

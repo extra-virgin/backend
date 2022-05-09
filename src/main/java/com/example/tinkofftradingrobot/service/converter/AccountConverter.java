@@ -9,13 +9,12 @@ public class AccountConverter {
                 .accountId(accountEntity.getAccountId())
                 .strategy(accountEntity.getStrategy()).build();
     }
-    /*// detached
+    // detached
     public static AccountEntity toEntity(AccountDTO accountDTO) {
         return AccountEntity.builder()
                 .id(null)
-                .token(null)
                 .accountId(accountDTO.getAccountId())
-                .strategy(accountDTO.getStrategy()).build();
+                .strategy(accountDTO.getStrategy())
+                .user(null).build();
     }
-     */
 }

@@ -25,10 +25,10 @@ public class OrderEntity {
     @Column(name = "id")
     private Long orderId;
 
-    @Column(name = "figi")
+    @Column(name = "figi", nullable = false)
     private String figi;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private Long price;
 
     // owner of relationship - order
@@ -36,7 +36,7 @@ public class OrderEntity {
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private AccountEntity account;
 
-    @Column(name = "quantity")
+    @Column(name = "quantity", nullable = false)
     private int quantity;
 
     @Column(name = "direction")

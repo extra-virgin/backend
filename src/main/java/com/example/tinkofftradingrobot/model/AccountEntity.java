@@ -20,7 +20,7 @@ public class AccountEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "account_id")
+    @Column(name = "account_id", unique = true, nullable = false)
     private String accountId;
 
     @Enumerated(EnumType.ORDINAL)

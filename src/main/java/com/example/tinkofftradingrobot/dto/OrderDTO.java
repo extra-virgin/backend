@@ -10,8 +10,6 @@ import java.io.Serializable;
 @Data
 @Builder
 public class OrderDTO implements Serializable {
-    private String token;
-
     private String figi;
 
     private Long price;

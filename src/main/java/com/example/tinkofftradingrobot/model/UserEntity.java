@@ -9,7 +9,6 @@ import java.util.Objects;
 
 @RequiredArgsConstructor
 @AllArgsConstructor
-@Builder
 @Getter
 @Setter
 @Entity
@@ -21,7 +20,7 @@ public class UserEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name="token", unique = true)
+    @Column(name="token", unique = true, nullable = false)
     private String token;
 
     @OneToMany(mappedBy = "user")
