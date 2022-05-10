@@ -24,6 +24,7 @@ public class SolutionInvoker {
 
     public void run() {
         // здесь будет делаться вся работа
+
     }
 
 

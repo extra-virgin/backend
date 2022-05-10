@@ -34,6 +34,11 @@ public class AccountEntity {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private UserEntity user;
 
+    @ElementCollection
+    @CollectionTable(name = "figis", joinColumns = @JoinColumn(name = "id"))
+    @Column(name = "figi")
+    private List<String> figis;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
