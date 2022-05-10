@@ -25,6 +25,7 @@ public class AlgorithmConfigKeeper {
     public static boolean isShortEnabled() {
         return ALGORITHM_CONFIG.isShortEnabled();
     }
+
     // торговая стратегия
     private Strategy strategy;
 

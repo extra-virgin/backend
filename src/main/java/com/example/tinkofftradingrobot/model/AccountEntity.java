@@ -13,7 +13,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
-@Table(name= "accounts")
+@Table(name = "accounts")
 public class AccountEntity {
     @Id
     @GeneratedValue

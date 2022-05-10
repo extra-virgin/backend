@@ -4,7 +4,6 @@ import com.example.tinkofftradingrobot.dto.OrderDTO;
 import com.example.tinkofftradingrobot.model.OrderEntity;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 
 public class OrderConverter {
     public static OrderDTO toDTO(OrderEntity orderEntity) {
@@ -18,6 +17,7 @@ public class OrderConverter {
                 .time(orderEntity.getDate().getTime())
                 .build();
     }
+
     // detached (no user)
     public static OrderEntity toEntity(OrderDTO orderDTO) {
         return OrderEntity.builder()

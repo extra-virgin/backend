@@ -21,7 +21,7 @@ public class ApiAuthenticationProvider implements AuthenticationProvider {
 
         ApiAuthenticationToken apiAuthentication = (ApiAuthenticationToken) authentication;
         boolean isPresent = userRepo.existsUserEntitiesByTokenEquals(apiAuthentication.getName());
-        if(!isPresent){
+        if (!isPresent) {
             throw new UnknownUserException("Could not find user with Token: " + apiAuthentication.getName());
         }
         var userOpt = userRepo.findByToken(apiAuthentication.getName());

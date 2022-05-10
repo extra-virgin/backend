@@ -15,6 +15,7 @@ public class MonitoringService {
     private final InvestApi investApi;
 
     private AccountService accountService;
+
     @Autowired
     public void setUserService(AccountService accountService) {
         this.accountService = accountService;

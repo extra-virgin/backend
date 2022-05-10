@@ -1,18 +1,16 @@
 package com.example.tinkofftradingrobot.config.security;
 
-import com.example.tinkofftradingrobot.model.UserEntity;
-import org.springframework.security.authentication.AbstractAuthenticationToken;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.Collection;
 
 public class ApiAuthenticationToken implements Authentication {
 
     private final String token;
-    boolean isAuthenticated = false;
-    Long userId;
+    private boolean isAuthenticated = false;
+    private Long userId;
 
     public ApiAuthenticationToken(String token) {
         this.token = token;
@@ -57,5 +55,17 @@ public class ApiAuthenticationToken implements Authentication {
     @Override
     public String getName() {
         return token;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public static ApiAuthenticationToken getApiAuthTokenFromContext() {
+        var auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth instanceof ApiAuthenticationToken) {
+            return (ApiAuthenticationToken) auth;
+        }
+        throw new UnknownUserException("ApiAuthenticationToken not found");
     }
 }

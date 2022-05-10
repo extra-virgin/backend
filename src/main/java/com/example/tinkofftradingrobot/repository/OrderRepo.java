@@ -11,7 +11,7 @@ import java.util.List;
 public interface OrderRepo extends JpaRepository<OrderEntity, Long> {
 
     @Query("select a from OrderEntity a where a.date <= :date")
-    List<OrderEntity> findAllWithDateTimeBefore(@Param("date")Date date);
+    List<OrderEntity> findAllWithDateTimeBefore(@Param("date") Date date);
 
 }
 

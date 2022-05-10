@@ -27,7 +27,8 @@ To run database on local postgresql specify user in spring.application.
 
 Важно: 
 
-1) Для любого запроса кроме `/api/user/create` требует наличия в Header запроса пары `X-Authorization: token`, иначе будет прилетать 403.
+1) Для любого запроса  требуется наличия в Header запроса пары `X-Authorization: token`, иначе будет прилетать 403 
+или для `/api/user/create` 400.
 
 2) Первая таблица - всегда запрос, вторая таблица - всегда ответ.
 
@@ -47,9 +48,9 @@ To run database on local postgresql specify user in spring.application.
 
 RequestBody:
 
-| Field | Type   | Description                              |
-|-------|--------|------------------------------------------|
-| token | string | Токен для получения доступа к tinkoffApi |
+| Field | Type | Description |
+|-------|------|-------------|
+| -     | -    | -           |
 
 ResponseBody:
 
@@ -64,9 +65,9 @@ ResponseBody:
 
 RequestBody:
 
-| Field | Type   | Description                              |
-|-------|--------|------------------------------------------|
-| token | string | Токен для получения доступа к tinkoffApi |
+| Field | Type | Description |
+|-------|------|-------------|
+| -     | -    | -           |
 
 ResponseBody:
 
