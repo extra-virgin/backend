@@ -24,10 +24,4 @@ public class OrderController {
         return new ResponseEntity<>(orders, HttpStatus.OK);
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<?> createOrder() {
-
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
 }
