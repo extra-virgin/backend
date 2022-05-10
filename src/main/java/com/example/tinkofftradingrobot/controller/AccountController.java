@@ -18,7 +18,7 @@ public class AccountController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> createUser() {
+    public ResponseEntity<?> createAccount() {
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

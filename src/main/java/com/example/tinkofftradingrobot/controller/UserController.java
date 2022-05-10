@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.tinkoff.piapi.core.InvestApi;
 
 import static com.example.tinkofftradingrobot.config.security.ApiAuthenticationToken.getApiAuthTokenFromContext;
 
@@ -15,14 +16,17 @@ import static com.example.tinkofftradingrobot.config.security.ApiAuthenticationT
 public class UserController {
 
     private final UserService userService;
+    private final InvestApi investApiSandbox;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, InvestApi investApiSandbox) {
         this.userService = userService;
+        this.investApiSandbox = investApiSandbox;
     }
 
     @PostMapping("/create")
     public ResponseEntity<?> createUser() {
         var auth = getApiAuthTokenFromContext();
+        System.out.println(investApiSandbox.getSandboxService().getAccountsSync());
         if (auth.getName() == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

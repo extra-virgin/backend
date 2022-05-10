@@ -1,4 +1,4 @@
-package com.example.tinkofftradingrobot.strategy.tinkoff;
+package com.example.tinkofftradingrobot.strategy.grpc;
 
 import io.grpc.*;
 
@@ -14,11 +14,13 @@ public class AuthInterceptor implements ClientInterceptor {
         this.authHeaderValue = "Bearer " + token;
     }
 
+
     @Override
     public <ReqT, RespT> ClientCall<ReqT, RespT> interceptCall(MethodDescriptor<ReqT, RespT> methodDescriptor,
                                                                CallOptions callOptions, Channel channel) {
         var call = channel.newCall(methodDescriptor, callOptions);
         return new ForwardingClientCall.SimpleForwardingClientCall<>(call) {
+
             @Override
             public void start(Listener<RespT> responseListener, Metadata headers) {
                 headers.put(AUTH_HEADER, authHeaderValue);
