@@ -12,11 +12,13 @@ public class Beans {
     InvestApi investApi;
     String token = "t.fikyI7dHK-4bsBPZGmGkXuoUy35PhwNsk2seJZqXSQlXEhU9o7htmot8Qxmi7Uz0-a2gU42oy-YRnsb8pociqA";
 
-    @Bean String token() {
+    @Bean
+    String token() {
         return token;
     }
 
-    @Bean InvestApi investApi() {
+    @Bean
+    InvestApi investApi() {
         if (investApi == null) {
             investApi = InvestApi.createSandbox(token);
         }

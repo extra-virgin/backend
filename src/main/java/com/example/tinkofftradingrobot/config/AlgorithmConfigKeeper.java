@@ -1,7 +1,7 @@
 package com.example.tinkofftradingrobot.config;
 
 import com.example.tinkofftradingrobot.dto.AlgorithmConfig;
-import com.example.tinkofftradingrobot.strategy.Strategy;
+import com.example.tinkofftradingrobot.util.Strategy;
 
 public class AlgorithmConfigKeeper {
     private static AlgorithmConfig ALGORITHM_CONFIG;
@@ -25,6 +25,7 @@ public class AlgorithmConfigKeeper {
     public static boolean isShortEnabled() {
         return ALGORITHM_CONFIG.isShortEnabled();
     }
+
     // торговая стратегия
     private Strategy strategy;
 

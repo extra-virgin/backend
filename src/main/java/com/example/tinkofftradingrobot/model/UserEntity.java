@@ -1,7 +1,10 @@
 package com.example.tinkofftradingrobot.model;
 
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -20,7 +23,7 @@ public class UserEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name="token", unique = true, nullable = false)
+    @Column(name = "token", unique = true, nullable = false)
     private String token;
 
     @OneToMany(mappedBy = "user")

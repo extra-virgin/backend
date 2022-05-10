@@ -1,6 +1,6 @@
 package com.example.tinkofftradingrobot.model;
 
-import com.example.tinkofftradingrobot.strategy.Strategy;
+import com.example.tinkofftradingrobot.util.Strategy;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,7 +13,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
-@Table(name= "accounts")
+@Table(name = "accounts")
 public class AccountEntity {
     @Id
     @GeneratedValue

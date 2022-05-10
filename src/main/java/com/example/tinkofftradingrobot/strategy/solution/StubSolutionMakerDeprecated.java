@@ -1,4 +1,4 @@
-package com.example.tinkofftradingrobot.strategy;
+package com.example.tinkofftradingrobot.strategy.solution;
 
 import com.example.tinkofftradingrobot.config.AlgorithmConfigKeeper;
 import org.springframework.stereotype.Service;
@@ -11,18 +11,17 @@ import java.util.Objects;
 import java.util.UUID;
 
 /**
- *  Mock of real strategy class for testing.
- *  Randomly buys an instrument then sells if price grows by 1% or if it falls by 0.5%
+ * Mock of real strategy class for testing.
+ * Randomly buys an instrument then sells if price grows by 1% or if it falls by 0.5%
  */
 @Service
-public class StubSolutionMaker implements StrategySolutionMaker {
+public class StubSolutionMakerDeprecated {
     private InvestApi investApi;
 
-    public StubSolutionMaker(InvestApi investApi) {
+    public StubSolutionMakerDeprecated(InvestApi investApi) {
         this.investApi = investApi;
     }
 
-    @Override
     // тут вместо figi должен быть объект со всей информацией, которая может пригодиться для принятия решения.
     // вызывается из MonitoringService
     public void resolve(String figi) {
@@ -46,7 +45,7 @@ public class StubSolutionMaker implements StrategySolutionMaker {
 
     private void buy(String figi) {
         var accountID = investApi.getUserService().getAccountsSync().get(0).getId();
-        var currentPrice = investApi.getMarketDataService().getLastPricesSync(List.of(figi)).get(0).getPrice().getUnits()*100 +
+        var currentPrice = investApi.getMarketDataService().getLastPricesSync(List.of(figi)).get(0).getPrice().getUnits() * 100 +
                 investApi.getMarketDataService().getLastPricesSync(List.of(figi)).get(0).getPrice().getNano();
         var portfolio = investApi.getOperationsService().getPortfolioSync(accountID);
         var positionList = portfolio.getPositions();
@@ -65,7 +64,7 @@ public class StubSolutionMaker implements StrategySolutionMaker {
         }
 
         if (currentPrice * (amount + 1) < (long) capital * AlgorithmConfigKeeper.maxPortfolioBasisPointPerInstrument()
-            && capital > 0 && currentPrice < rubles) {
+                && capital > 0 && currentPrice < rubles) {
             investApi.getOrdersService().postOrder(figi, 1L, investApi
                             .getMarketDataService().getLastPricesSync(List.of(figi)).get(0).getPrice(),
                     OrderDirection.ORDER_DIRECTION_BUY, investApi.getUserService().getAccountsSync().get(0).getId(),

@@ -8,7 +8,6 @@ import ru.tinkoff.piapi.contract.v1.OrderType;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.Objects;
 
 @RequiredArgsConstructor
@@ -48,7 +47,7 @@ public class OrderEntity {
     @Enumerated(EnumType.STRING)
     private OrderType type;
 
-    @Column(name="timestamp", nullable = false, updatable = false, insertable = false)
+    @Column(name = "timestamp", nullable = false, updatable = false, insertable = false)
     @CreationTimestamp
     private Date date;
 
