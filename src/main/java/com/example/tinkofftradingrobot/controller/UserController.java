@@ -22,7 +22,21 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> createOrder(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<?> createUser(@RequestBody UserDTO userDTO) {
+        if (userDTO.getToken() == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        var userOpt = userService.addUser(userDTO);
+        if (userOpt.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("User already exists");
+        } else {
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }
+    }
+
+    @PostMapping("/delete")
+    public ResponseEntity<?> deleteUser(@RequestBody UserDTO userDTO) {
         if (userDTO.getToken() == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
