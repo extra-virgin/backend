@@ -1,4 +1,4 @@
-package com.example.tinkofftradingrobot.bean;
+package com.example.tinkofftradingrobot.strategy.tinkoff;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
