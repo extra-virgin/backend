@@ -20,17 +20,13 @@ public class ApiAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
         ApiAuthenticationToken apiAuthentication = (ApiAuthenticationToken) authentication;
-        boolean isPresent = userRepo.existsUserEntitiesByTokenEquals(apiAuthentication.getName());
-        if (!isPresent) {
-            throw new UnknownUserException("Could not find user with Token: " + apiAuthentication.getName());
-        }
         var userOpt = userRepo.findByToken(apiAuthentication.getName());
         if (userOpt.isPresent()) {
             UserEntity user = userOpt.get();
             return new ApiAuthenticationToken(user.getToken(), user.getId(), true);
+        } else {
+            throw new UnknownUserException("Could not find user with Token: " + apiAuthentication.getName());
         }
-        apiAuthentication.setAuthenticated(false);
-        return apiAuthentication;
     }
 
     @Override

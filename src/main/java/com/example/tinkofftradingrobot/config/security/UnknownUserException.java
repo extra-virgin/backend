@@ -1,6 +1,8 @@
 package com.example.tinkofftradingrobot.config.security;
 
-public class UnknownUserException extends SecurityException {
+import org.springframework.security.core.AuthenticationException;
+
+public class UnknownUserException extends AuthenticationException {
     public UnknownUserException(String string) {
         super(string);
     }

@@ -1,5 +1,8 @@
 package com.example.tinkofftradingrobot.config.security;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -33,13 +36,24 @@ public class ApiAuthenticationFilter extends OncePerRequestFilter {
             auth.setAuthenticated(true);
             // handle other request
         } else {
-            auth = apiAuthenticationProvider.authenticate(new ApiAuthenticationToken(xAuth));
-            if (!auth.isAuthenticated()) {
-                throw new SecurityException();
+            try {
+                auth = apiAuthenticationProvider.authenticate(new ApiAuthenticationToken(xAuth));
+            } catch (UnknownUserException e) {
+                response.setStatus(HttpStatus.FORBIDDEN.value());
+                response.getWriter().write(convertObjectToJson(e.getMessage()));
+                return;
             }
         }
         SecurityContextHolder.getContext().setAuthentication(auth);
         filterChain.doFilter(request, response);
+    }
+
+    private String convertObjectToJson(Object object) throws JsonProcessingException {
+        if (object == null) {
+            return null;
+        }
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(object);
     }
 
 //    @Override protected boolean shouldNotFilter(HttpServletRequest request) {

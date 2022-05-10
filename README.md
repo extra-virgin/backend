@@ -56,7 +56,7 @@ ResponseBody:
 
 | Field | Type | Description |
 |-------|------|-------------|
-|       |      |             |
+| -     | -    | -           |
 
 
 #### `[POST] /delete`
@@ -73,7 +73,7 @@ ResponseBody:
 
 | Field | Type | Description |
 |-------|------|-------------|
-|       |      |             |
+| -     | -    | -           |
 
 
 ---

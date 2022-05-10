@@ -18,9 +18,20 @@ public class UserService {
         this.userRepo = userRepo;
     }
 
-    public Optional<UserEntity> addUser(UserDTO userDTO) {
+    public Optional<UserDTO> addUser(UserDTO userDTO) {
         try {
-            return Optional.of(userRepo.save(UserConverter.toEntity(userDTO)));
+            var userEntity = userRepo.save(UserConverter.toEntity(userDTO));
+            return Optional.of(UserConverter.toDTO(userEntity));
+        } catch (DataIntegrityViolationException e) {
+            return Optional.empty();
+        }
+    }
+
+    public Optional<UserDTO> removeUser(UserDTO userDTO) {
+        try {
+            var userEntityOpt = userRepo.findByToken(userDTO.getToken());
+            userEntityOpt.ifPresent(userRepo::delete);
+            return userEntityOpt.map(UserConverter::toDTO);
         } catch (DataIntegrityViolationException e) {
             return Optional.empty();
         }

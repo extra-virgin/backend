@@ -34,17 +34,17 @@ public class UserController {
         }
     }
 
-//    @PostMapping("/delete")
-//    public ResponseEntity<?> deleteUser() {
-//        if (userDTO.getToken() == null) {
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
-//
-//        var userOpt = userService.addUser(userDTO);
-//        if (userOpt.isEmpty()) {
-//            return ResponseEntity.status(HttpStatus.CONFLICT).body("User already exists");
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.CREATED);
-//        }
-//    }
+    @PostMapping("/delete")
+    public ResponseEntity<?> deleteUser() {
+        var auth = getApiAuthTokenFromContext();
+        if (auth.getName() == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        var userOpt = userService.removeUser(new UserDTO(auth.getName()));
+        if (userOpt.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("User is not present");
+        } else {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+    }
 }
