@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import java.sql.Date;
 import java.util.List;
 
+// TODO если что вдруг можно создать отдельно новый репозиторий, заинжектить entityManager и потом это все под один интерфейс запихать, будет красиво работать и ничем не ограничено
 public interface OrderRepo extends JpaRepository<OrderEntity, Long> {
 
 //    @Query("select a from OrderEntity a where a.date <= :date")
