@@ -1,5 +1,6 @@
 package com.example.tinkofftradingrobot.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
 import ru.tinkoff.piapi.contract.v1.OrderDirection;
@@ -14,6 +15,7 @@ public class OrderDTO implements Serializable {
 
     private Long price;
 
+    @JsonProperty("account_id")
     private String accountID;
 
     private int quantity;
