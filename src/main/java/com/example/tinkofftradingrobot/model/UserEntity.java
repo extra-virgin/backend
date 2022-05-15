@@ -26,6 +26,9 @@ public class UserEntity {
     @Column(name = "token", unique = true, nullable = false)
     private String token;
 
+    @Column(name = "is_sandbox", nullable = false)
+    private Boolean isSandbox;
+
     @OneToMany(mappedBy = "user")
     private List<AccountEntity> accountEntityList;
 

@@ -13,12 +13,12 @@ public class ApiScheduler {
         this.solutionInvoker = solutionInvoker;
     }
 
-    @Scheduled(fixedDelay = 1000, initialDelay = 1000)
+//    @Scheduled(fixedDelay = 1000, initialDelay = 1000)
     public void scheduleFixedRateWithInitialDelayTask() {
         solutionInvoker.run();
     }
 
-    @Scheduled(fixedDelay = 1000, initialDelay = 500)
+//    @Scheduled(fixedDelay = 1000, initialDelay = 500)
     public void updateActiveAccounts() {
         solutionInvoker.updateActiveAccounts();;
     }

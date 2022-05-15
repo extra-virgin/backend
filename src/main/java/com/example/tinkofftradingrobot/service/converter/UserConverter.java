@@ -15,6 +15,7 @@ public class UserConverter {
         userEntity.setId(null);
         userEntity.setToken(userDTO.getToken());
         userEntity.setAccountEntityList(null);
+        userEntity.setIsSandbox(null);
         return userEntity;
     }
 }

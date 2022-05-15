@@ -1,6 +1,5 @@
 package com.example.tinkofftradingrobot.strategy.connection;
 
-import io.grpc.Channel;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.springframework.stereotype.Component;

@@ -46,6 +46,12 @@ To run database on local postgresql specify user in spring.application.
 
 Описание: добавление токена и, таким образом, получение доступа к основному функционалу.
 
+RequestParam:
+
+| Field      | Type    | Description                    |
+|------------|---------|--------------------------------|
+| is_sandbox | Boolean | Является ли аккаунт песочницей |
+
 RequestBody:
 
 | Field | Type | Description |

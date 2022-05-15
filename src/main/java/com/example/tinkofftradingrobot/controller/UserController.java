@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import static com.example.tinkofftradingrobot.config.security.ApiAuthenticationToken.getApiAuthTokenFromContext;
@@ -21,12 +22,12 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> createUser() {
+    public ResponseEntity<?> createUser(@RequestParam(name = "is_sandbox", required = false, defaultValue = "false") Boolean isSandbox) {
         var auth = getApiAuthTokenFromContext();
         if (auth.getName() == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        var userOpt = userService.addUser(new UserDTO(auth.getName()));
+        var userOpt = userService.addUser(new UserDTO(auth.getName()), isSandbox);
         if (userOpt.isEmpty()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("User already exists");
         } else {
