@@ -48,7 +48,11 @@ public class UserService {
                 var userEntity = userEntityOpt.get();
                 userRepo.delete(userEntity);
                 // connection
-                connectionHandler.removeConnection(userEntity.getToken());
+                if (userEntity.getIsSandbox()) {
+                    connectionHandler.removeConnectionSandbox(userEntity.getToken());
+                } else {
+                    connectionHandler.removeConnection(userEntity.getToken());
+                }
             }
             return userEntityOpt.map(UserConverter::toDTO);
         } catch (DataIntegrityViolationException e) {
