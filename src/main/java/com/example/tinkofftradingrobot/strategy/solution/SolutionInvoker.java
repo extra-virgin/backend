@@ -4,12 +4,15 @@ import com.example.tinkofftradingrobot.model.UserEntity;
 import com.example.tinkofftradingrobot.repository.AccountRepo;
 import com.example.tinkofftradingrobot.repository.OrderRepo;
 import com.example.tinkofftradingrobot.repository.UserRepo;
+import com.example.tinkofftradingrobot.strategy.Strategy;
 import com.example.tinkofftradingrobot.strategy.solution.maker.SolutionMaker;
 import com.example.tinkofftradingrobot.strategy.solution.maker.StubSolutionMaker;
-import com.example.tinkofftradingrobot.util.Strategy;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Component
 public class SolutionInvoker {
@@ -40,6 +43,7 @@ public class SolutionInvoker {
     private List<UserEntity> loadUsersFromRepo() {
         return new ArrayList<>(userRepo.findAllSortedById());
     }
+
     // method to update users from database to work with new elements
     // complexity: O(n) - if im'ma sure, db sorts elements by default else O(n * log n)
     public void updateActiveAccounts() {
@@ -50,7 +54,8 @@ public class SolutionInvoker {
             var it1 = usersSorted.listIterator();
             var it2 = usersSortedById.listIterator();
 
-            UserEntity u1; UserEntity u2;
+            UserEntity u1;
+            UserEntity u2;
             while (it1.hasNext() || it2.hasNext()) {
                 if (!it1.hasNext()) {
                     userEntities.add(it2.next());
@@ -62,7 +67,8 @@ public class SolutionInvoker {
                     if (u1.getId() < u2.getId()) {
                         userEntities.add(u1);
                         it2.previous();
-                    } if (u1.getId() > u2.getId()) {
+                    }
+                    if (u1.getId() > u2.getId()) {
                         userEntities.add(u2);
                         it1.previous();
                     } else {

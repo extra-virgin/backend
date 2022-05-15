@@ -1,7 +1,6 @@
 package com.example.tinkofftradingrobot.service;
 
 import com.example.tinkofftradingrobot.dto.AccountDTO;
-import com.example.tinkofftradingrobot.model.UserEntity;
 import com.example.tinkofftradingrobot.repository.AccountRepo;
 import com.example.tinkofftradingrobot.repository.UserRepo;
 import com.example.tinkofftradingrobot.service.converter.AccountConverter;
@@ -12,7 +11,6 @@ import ru.tinkoff.piapi.contract.v1.Account;
 import ru.tinkoff.piapi.core.InvestApi;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -44,10 +42,10 @@ public class AccountService {
             accountRepo.save(account);
             return Optional.of(AccountConverter.toDTO(account));
         } catch (
-        DataIntegrityViolationException e) {
+                DataIntegrityViolationException e) {
             return Optional.empty();
         }
-}
+    }
 
     @Nullable
     public List<AccountDTO> getAccounts(String token) {
@@ -65,7 +63,7 @@ public class AccountService {
         if (userOpt.isEmpty()) return null;
 
         var user = userOpt.get();
-        var accounts =  getApiAccounts(user.getToken(), user.getIsSandbox());
+        var accounts = getApiAccounts(user.getToken(), user.getIsSandbox());
         if (accounts == null) return null;
         return accounts.stream()
                 .map(ac -> AccountDTO.builder().accountId(ac.getId()).build())
@@ -74,7 +72,9 @@ public class AccountService {
 
     public Optional<AccountDTO> updateAccount(String token, AccountDTO accountDTO) {
         var accountOpt = accountRepo.findAccountEntityByAccountId(accountDTO.getAccountId());
-        if (accountOpt.isEmpty()) { return Optional.empty(); }
+        if (accountOpt.isEmpty()) {
+            return Optional.empty();
+        }
         var account = accountOpt.get();
         if (!account.getUser().getToken().equals(token)) {
             return Optional.empty();
@@ -88,7 +88,9 @@ public class AccountService {
 
     public Optional<AccountDTO> removeAccount(String token, String accountId) {
         var accountOpt = accountRepo.findAccountEntityByAccountId(accountId);
-        if (accountOpt.isEmpty()) { return Optional.empty(); }
+        if (accountOpt.isEmpty()) {
+            return Optional.empty();
+        }
         var account = accountOpt.get();
         if (!account.getUser().getToken().equals(token)) {
             return Optional.empty();
@@ -101,7 +103,9 @@ public class AccountService {
 
     private boolean isAccountPresent(String token, boolean isSandbox, AccountDTO accountDTO) {
         List<Account> accounts = getApiAccounts(token, isSandbox);
-        if (accounts == null) { return false; }
+        if (accounts == null) {
+            return false;
+        }
         return accounts.stream().anyMatch(account -> account.getId().equals(accountDTO.getAccountId()));
     }
 
@@ -113,7 +117,9 @@ public class AccountService {
         } else {
             connection = connectionHandler.getConnection(token);
         }
-        if (connection == null) { return null; }
+        if (connection == null) {
+            return null;
+        }
 
         List<Account> accounts;
         if (isSandbox) {

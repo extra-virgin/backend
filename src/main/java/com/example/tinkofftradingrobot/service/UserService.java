@@ -1,7 +1,6 @@
 package com.example.tinkofftradingrobot.service;
 
 import com.example.tinkofftradingrobot.dto.UserDTO;
-import com.example.tinkofftradingrobot.model.UserEntity;
 import com.example.tinkofftradingrobot.repository.UserRepo;
 import com.example.tinkofftradingrobot.service.converter.UserConverter;
 import com.example.tinkofftradingrobot.strategy.connection.ConnectionHandler;

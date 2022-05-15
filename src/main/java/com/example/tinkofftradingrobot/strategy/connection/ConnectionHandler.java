@@ -7,10 +7,13 @@ import io.grpc.ManagedChannelBuilder;
 import org.springframework.stereotype.Component;
 import ru.tinkoff.piapi.core.InvestApi;
 
-import static io.grpc.ClientInterceptors.intercept;
-
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+
+import static io.grpc.ClientInterceptors.intercept;
 
 @Component
 public class ConnectionHandler {

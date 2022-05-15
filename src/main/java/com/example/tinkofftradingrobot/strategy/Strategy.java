@@ -1,4 +1,4 @@
-package com.example.tinkofftradingrobot.util;
+package com.example.tinkofftradingrobot.strategy;
 
 public enum Strategy {
     NONE("NONE"),

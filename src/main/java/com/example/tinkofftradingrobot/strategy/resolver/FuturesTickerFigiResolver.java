@@ -1,6 +1,5 @@
 package com.example.tinkofftradingrobot.strategy.resolver;
 
-import org.springframework.stereotype.Service;
 import ru.tinkoff.piapi.core.InvestApi;
 
 //@Service

@@ -1,7 +1,7 @@
 package com.example.tinkofftradingrobot.config;
 
 import com.example.tinkofftradingrobot.dto.AlgorithmConfig;
-import com.example.tinkofftradingrobot.util.Strategy;
+import com.example.tinkofftradingrobot.strategy.Strategy;
 
 public class AlgorithmConfigKeeper {
     private static AlgorithmConfig ALGORITHM_CONFIG;
