@@ -23,12 +23,10 @@ public class AccountEntity {
     @Column(name = "account_id", unique = true, nullable = false)
     private String accountId;
 
-    @Column(name = "is_active", nullable = false)
-    private boolean isActive;
-
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "strategy")
     private Strategy strategy;
+
     // orders - owner of relationship
     @OneToMany(mappedBy = "account")
     private List<OrderEntity> orders;
