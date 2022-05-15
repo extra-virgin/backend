@@ -47,8 +47,7 @@ public class AccountEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AccountEntity that = (AccountEntity) o;
-        return Objects.equals(id, that.id) && Objects.equals(accountId, that.accountId)
-                && strategy == that.strategy && Objects.equals(orders, that.orders);
+        return Objects.equals(id, that.id);
     }
 
     @Override
