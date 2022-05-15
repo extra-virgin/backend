@@ -26,7 +26,7 @@ public class ConnectionHandler {
                 .useTransportSecurity().build();
     }
 
-
+    // creation
     public void createConnection(String token) {
         if (!connectionMap.containsKey(token)) {
             connectionMap.put(token, InvestApi.create(intercept(managedChannel, new AuthInterceptor(token))));
@@ -39,6 +39,7 @@ public class ConnectionHandler {
         }
     }
 
+    // loading
     public void loadConnections(Collection<String> tokens) {
         connectionMap.clear();
         for (var token : tokens) {
@@ -53,6 +54,16 @@ public class ConnectionHandler {
         }
     }
 
+    // getters
+    public InvestApi getConnection(String token) {
+        return connectionMap.get(token);
+    }
+
+    public Collection<InvestApi> getConnectionList() {
+        return connectionMap.values();
+    }
+
+    // removing
     public void removeConnection(String token) {
         connectionMap.remove(token);
     }
