@@ -6,5 +6,5 @@ import ru.tinkoff.piapi.core.InvestApi;
 
 public interface SolutionMaker {
 
-    public SolutionResponse resolve(InvestApi channel, SolutionRequest solutionRequest);
+    SolutionResponse resolve(InvestApi channel, SolutionRequest solutionRequest);
 }
