@@ -14,7 +14,7 @@ import java.util.UUID;
  * Mock of real strategy class for testing.
  * Randomly buys an instrument then sells if price grows by 1% or if it falls by 0.5%
  */
-@Service
+//@Service
 public class StubSolutionMakerDeprecated {
     private InvestApi investApi;
 

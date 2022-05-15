@@ -1,4 +1,4 @@
-package com.example.tinkofftradingrobot.strategy.grpc;
+package com.example.tinkofftradingrobot.strategy.connection;
 
 import io.grpc.*;
 

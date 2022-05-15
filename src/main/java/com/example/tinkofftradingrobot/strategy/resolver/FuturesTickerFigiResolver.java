@@ -3,7 +3,7 @@ package com.example.tinkofftradingrobot.strategy.resolver;
 import org.springframework.stereotype.Service;
 import ru.tinkoff.piapi.core.InvestApi;
 
-@Service
+//@Service
 public class FuturesTickerFigiResolver implements TickerFigiResolver {
     private final String FUTURES_CLASS_CODE = "SPBFUT";
 

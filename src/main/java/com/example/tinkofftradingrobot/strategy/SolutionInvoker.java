@@ -1,6 +1,5 @@
 package com.example.tinkofftradingrobot.strategy;
 
-import com.example.tinkofftradingrobot.model.AccountEntity;
 import com.example.tinkofftradingrobot.model.UserEntity;
 import com.example.tinkofftradingrobot.repository.AccountRepo;
 import com.example.tinkofftradingrobot.repository.OrderRepo;
@@ -8,12 +7,9 @@ import com.example.tinkofftradingrobot.repository.UserRepo;
 import com.example.tinkofftradingrobot.strategy.solution.SolutionMaker;
 import com.example.tinkofftradingrobot.strategy.solution.StubSolutionMaker;
 import com.example.tinkofftradingrobot.util.Strategy;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
-import java.util.concurrent.locks.Lock;
-import java.util.stream.Collectors;
 
 @Component
 public class SolutionInvoker {
