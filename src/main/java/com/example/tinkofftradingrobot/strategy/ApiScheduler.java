@@ -1,5 +1,6 @@
 package com.example.tinkofftradingrobot.strategy;
 
+import com.example.tinkofftradingrobot.strategy.solution.SolutionInvoker;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 

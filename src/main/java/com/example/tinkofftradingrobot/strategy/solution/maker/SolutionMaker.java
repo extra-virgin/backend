@@ -1,4 +1,4 @@
-package com.example.tinkofftradingrobot.strategy.solution;
+package com.example.tinkofftradingrobot.strategy.solution.maker;
 
 import com.example.tinkofftradingrobot.strategy.solution.data.SolutionRequest;
 import com.example.tinkofftradingrobot.strategy.solution.data.SolutionResponse;

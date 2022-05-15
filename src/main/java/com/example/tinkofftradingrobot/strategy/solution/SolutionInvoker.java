@@ -1,11 +1,11 @@
-package com.example.tinkofftradingrobot.strategy;
+package com.example.tinkofftradingrobot.strategy.solution;
 
 import com.example.tinkofftradingrobot.model.UserEntity;
 import com.example.tinkofftradingrobot.repository.AccountRepo;
 import com.example.tinkofftradingrobot.repository.OrderRepo;
 import com.example.tinkofftradingrobot.repository.UserRepo;
-import com.example.tinkofftradingrobot.strategy.solution.SolutionMaker;
-import com.example.tinkofftradingrobot.strategy.solution.StubSolutionMaker;
+import com.example.tinkofftradingrobot.strategy.solution.maker.SolutionMaker;
+import com.example.tinkofftradingrobot.strategy.solution.maker.StubSolutionMaker;
 import com.example.tinkofftradingrobot.util.Strategy;
 import org.springframework.stereotype.Component;
 
