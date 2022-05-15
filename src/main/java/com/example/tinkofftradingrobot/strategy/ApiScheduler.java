@@ -13,14 +13,8 @@ public class ApiScheduler {
     }
 
     //    @Scheduled(fixedDelay = 1000, initialDelay = 1000)
-    public void scheduleFixedRateWithInitialDelayTask() {
-        solutionInvoker.run();
-    }
-
-    //    @Scheduled(fixedDelay = 1000, initialDelay = 500)
-    public void updateActiveAccounts() {
-        solutionInvoker.updateActiveAccounts();
-        ;
+    public void scheduleSolutionInvokerRunStub() {
+        solutionInvoker.runStub();
     }
 
 }
