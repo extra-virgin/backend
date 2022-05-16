@@ -11,5 +11,5 @@ import java.util.List;
 @NoArgsConstructor
 public class SolutionRequest {
     String accountID;
-    String figi;
+    List<String> figi;
 }
