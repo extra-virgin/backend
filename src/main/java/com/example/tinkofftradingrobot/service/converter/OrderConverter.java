@@ -4,6 +4,7 @@ import com.example.tinkofftradingrobot.dto.OrderDTO;
 import com.example.tinkofftradingrobot.model.OrderEntity;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class OrderConverter {
     public static OrderDTO toDTO(OrderEntity orderEntity) {
@@ -14,21 +15,7 @@ public class OrderConverter {
                 .quantity(orderEntity.getQuantity())
                 .direction(orderEntity.getDirection())
                 .type(orderEntity.getType())
-                .time(orderEntity.getDate().getTime())
-                .build();
-    }
-
-    // detached (no user)
-    public static OrderEntity toEntity(OrderDTO orderDTO) {
-        return OrderEntity.builder()
-                .orderId(null)
-                .figi(orderDTO.getFigi())
-                .price(orderDTO.getPrice())
-                .account(null)
-                .quantity(orderDTO.getQuantity())
-                .direction(orderDTO.getDirection())
-                .type(orderDTO.getType())
-                .date(new Date(orderDTO.getTime()))
+                .time(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(orderEntity.getDate().getTime())))
                 .build();
     }
 }

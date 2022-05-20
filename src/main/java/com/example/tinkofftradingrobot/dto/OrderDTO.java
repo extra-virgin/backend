@@ -24,5 +24,5 @@ public class OrderDTO implements Serializable {
 
     private OrderType type;
 
-    private Long time;
+    private String time;
 }
