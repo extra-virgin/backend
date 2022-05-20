@@ -8,6 +8,7 @@ import com.example.tinkofftradingrobot.repository.AccountRepo;
 import com.example.tinkofftradingrobot.repository.OrderRepo;
 import com.example.tinkofftradingrobot.repository.UserRepo;
 import com.example.tinkofftradingrobot.service.converter.OrderConverter;
+import com.example.tinkofftradingrobot.strategy.connection.ConnectionHandler;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
@@ -22,11 +23,14 @@ public class OrderService {
     private final OrderRepo orderRepo;
     private final AccountRepo accountRepo;
     private final UserRepo userRepo;
+    private final ConnectionHandler connectionHandler;
 
-    public OrderService(OrderRepo orderRepo, AccountRepo accountRepo, UserRepo userRepo) {
+
+    public OrderService(OrderRepo orderRepo, AccountRepo accountRepo, UserRepo userRepo, ConnectionHandler connectionHandler) {
         this.orderRepo = orderRepo;
         this.accountRepo = accountRepo;
         this.userRepo = userRepo;
+        this.connectionHandler = connectionHandler;
     }
 
     public List<OrderDTO> getOrdersForLastMillis(String token, String accountId, long time) {
@@ -34,6 +38,7 @@ public class OrderService {
         if (accountOpt.isEmpty() || isUserOrAccountNotValid(userRepo.findByToken(token), accountOpt)) return null;
 
         List<OrderDTO> orders = new ArrayList<>();
+
         for (OrderEntity o : orderRepo.findAllByAccountAndDateBefore(accountOpt.get(), new Date(time))) {
             orders.add(OrderConverter.toDTO(o));
         }

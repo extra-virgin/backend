@@ -37,7 +37,7 @@ public class OrderEntity {
     private AccountEntity account;
 
     @Column(name = "quantity", nullable = false)
-    private int quantity;
+    private Long quantity;
 
     @Column(name = "direction")
     @Enumerated(EnumType.STRING)

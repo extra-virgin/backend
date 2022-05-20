@@ -18,7 +18,7 @@ public class OrderDTO implements Serializable {
     @JsonProperty("account_id")
     private String accountID;
 
-    private int quantity;
+    private Long quantity;
 
     private OrderDirection direction;
 

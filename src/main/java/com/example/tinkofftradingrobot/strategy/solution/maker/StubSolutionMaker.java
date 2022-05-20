@@ -77,7 +77,10 @@ public class StubSolutionMaker implements SolutionMaker {
                     // тогда даем распоряжение на покупку
                     resolution.setOrderDirection(OrderDirection.ORDER_DIRECTION_BUY);
                     resolution.setQuantity(1);
-                    resolution.setOrderID(generateOrderID());
+                    resolution.setPrice(channel
+                            .getMarketDataService().getLastPricesSync(List.of(figi)).get(0).getPrice());
+                    resolution.setOrderType(OrderType.ORDER_TYPE_MARKET);
+                    resolution.setOrderID(generateOrderID(resolution));
                 }
 
 
@@ -92,7 +95,8 @@ public class StubSolutionMaker implements SolutionMaker {
         return null;
     }
 
-    private String generateOrderID() {
-        return "";
+    //ToDo: переделать
+    private String generateOrderID(Resolution resolution) {
+        return String.valueOf(resolution.hashCode());
     }
 }

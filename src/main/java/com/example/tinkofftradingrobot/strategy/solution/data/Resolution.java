@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.tinkoff.piapi.contract.v1.OrderDirection;
 import ru.tinkoff.piapi.contract.v1.OrderType;
+import ru.tinkoff.piapi.contract.v1.Quotation;
 
 @Data
 @AllArgsConstructor
@@ -15,4 +16,5 @@ public class Resolution {
     String figi;
     OrderType orderType;
     String orderID;
+    Quotation price;
 }
