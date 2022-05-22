@@ -24,4 +24,4 @@ WORKDIR $APP_HOME
 COPY --from=builder $APP_HOME/build/libs/$ARTIFACT_NAME ./app.jar
 
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.Jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
